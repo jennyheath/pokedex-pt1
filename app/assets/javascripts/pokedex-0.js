@@ -4,7 +4,6 @@ window.Pokedex.Collections = {};
 
 Pokedex.Models.Pokemon = Backbone.Model.extend({
   urlRoot: "/pokemon"
-
 });
 
 Pokedex.Models.Toy = null; // WRITE ME IN PHASE 2
@@ -12,7 +11,6 @@ Pokedex.Models.Toy = null; // WRITE ME IN PHASE 2
 Pokedex.Collections.Pokemon = Backbone.Model.extend({
   url: "/pokemon",
   model: Pokedex.Models.Pokemon
-
 });
 
 Pokedex.Collections.PokemonToys = null; // WRITE ME IN PHASE 2
