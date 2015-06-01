@@ -1,10 +1,15 @@
 Pokedex.RootView.prototype.renderPokemonDetail = function (pokemon) {
+  this.$pokeDetail.html("");
   var displayAttributes = $('<ul>');
 
-  for (var key in pokemon) {
+  for (var key in pokemon.attributes) {
+    if (key === "image_url") {
+      continue;
+    }
+
     displayAttributes
       .append($('<li>')
-        .text(key + ": " + pokemon[key])
+        .text(key + ": " + pokemon.get(key))
       );
   }
 
@@ -13,7 +18,9 @@ Pokedex.RootView.prototype.renderPokemonDetail = function (pokemon) {
                 .addClass('detail')
                 .append(displayAttributes)
                 .append(  $('<img>')
-                          .attr('src', pokemon.image_url)));
+                          .attr('src', pokemon.get("image_url"))
+                        )
+            );
 };
 
 Pokedex.RootView.prototype.selectPokemonFromList = function (event) {
