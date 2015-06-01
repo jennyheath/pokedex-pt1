@@ -13,20 +13,16 @@ Pokedex.RootView.prototype.renderPokemonDetail = function (pokemon) {
       );
   }
 
-  this.$pokeDetail
-    .append(  $('<div>')
-                .addClass('detail')
-                .append(displayAttributes)
-                .append(  $('<img>')
-                          .attr('src', pokemon.get("image_url"))
-                        )
-            );
+  var $divDetail = $('<div>').addClass('detail').append(displayAttributes);
+  var $img = $('<img>').attr('src', pokemon.get("image_url"));
+
+  this.$pokeDetail.append($divDetail.append($img));
 };
 
 Pokedex.RootView.prototype.selectPokemonFromList = function (event) {
   var pokeId = $(event.target).data('id');
-  var pokemon = _.find(this.pokes.attributes, function (pokemon) {
-    return pokemon.id === pokeId;
+  var pokemon = _.find(this.pokes.models, function (pokemon) {
+    return pokemon.get('id') === pokeId;
   });
   this.renderPokemonDetail(pokemon);
 };
