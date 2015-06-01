@@ -8,7 +8,7 @@ Pokedex.Models.Pokemon = Backbone.Model.extend({
 
 Pokedex.Models.Toy = null; // WRITE ME IN PHASE 2
 
-Pokedex.Collections.Pokemon = Backbone.Model.extend({
+Pokedex.Collections.Pokemon = Backbone.Collection.extend({
   url: "/pokemon",
   model: Pokedex.Models.Pokemon
 });
@@ -45,6 +45,7 @@ window.Pokedex.RootView = function ($el) {
 
   // Click handlers go here.
   this.$pokeList.on('click', this.selectPokemonFromList.bind(this));
+  this.$newPoke.on('submit', this.submitPokemonForm.bind(this));
 };
 
 $(function() {
