@@ -9,6 +9,7 @@ Pokedex.RootView.prototype.renderPokemonDetail = function (pokemon) {
 
     displayAttributes
       .append($('<li>')
+        .addClass('toy-list-item')
         .text(key + ": " + pokemon.get(key))
       );
   }
@@ -17,6 +18,19 @@ Pokedex.RootView.prototype.renderPokemonDetail = function (pokemon) {
   var $img = $('<img>').attr('src', pokemon.get("image_url"));
 
   this.$pokeDetail.append($divDetail.append($img));
+
+  // toys
+
+  $('<ul>').addClass('toys').appendTo($('div.detail'));
+
+  var that = this;
+  pokemon.fetch({
+    success: function () {
+      pokemon.toys().each(function (toy) {
+        that.addToyToList(toy);
+      });
+    }
+  });
 };
 
 Pokedex.RootView.prototype.selectPokemonFromList = function (event) {
@@ -25,4 +39,5 @@ Pokedex.RootView.prototype.selectPokemonFromList = function (event) {
     return pokemon.get('id') === pokeId;
   });
   this.renderPokemonDetail(pokemon);
+
 };
